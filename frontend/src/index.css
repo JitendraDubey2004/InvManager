@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* You can add custom theme variables directly here now */
+@theme {
+  --color-primary: #2563eb; /* Blue-600 */
+}
+
+body {
+  background-color: var(--color-gray-100);
+}
