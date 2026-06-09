@@ -83,17 +83,22 @@ export default function Products() {
 
   return (
     <div className="relative min-h-screen">
-
       {/* ── Main dashboard content ── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className={`space-y-6 transition-all duration-300 ${isFormOpen ? 'pointer-events-none select-none' : ''}`}
+        className={`space-y-6 transition-all duration-300 ${isFormOpen ? 'pointer-events-none select-none opacity-50' : ''}`}
       >
         <ProductHero totalProducts={products.length} />
-        <ProductStats stats={stats} />
+        
+        {/* Added wrapper classes in case the subcomponents overflow on tiny screens */}
+        <div className="w-full overflow-hidden">
+          <ProductStats stats={stats} />
+        </div>
+        
         <ProductChart data={chartData} />
+        
         <ProductFilters
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -109,10 +114,12 @@ export default function Products() {
 
         {status !== 'loading' && filteredProducts.length > 0 && (
           <>
+            {/* Desktop Table View */}
             <div className="hidden xl:block">
               <ProductTable products={filteredProducts} onDelete={handleDelete} />
             </div>
-            <div className="grid gap-4 xl:hidden">
+            {/* Mobile/Tablet Card View */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xl:hidden">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} onDelete={handleDelete} />
               ))}
