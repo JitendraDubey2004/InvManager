@@ -31,7 +31,6 @@ export default function Customers() {
       c.id.toString().includes(searchTerm)
   );
 
-  // Generate a stable pastel color per initial letter
   const avatarColor = (name) => {
     const colors = [
       'bg-blue-50 border-blue-100 text-blue-700',
@@ -53,10 +52,10 @@ export default function Customers() {
         className={`space-y-6 transition-all duration-300 ${isFormOpen ? 'pointer-events-none select-none' : ''}`}
       >
 
-        {/* ── Hero header ── */}
+        {/* Hero header */}
         <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
           <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500" />
-          <div className="px-7 py-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="px-4 sm:px-7 py-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-sm shadow-blue-200 flex-shrink-0">
                 <Users size={22} />
@@ -68,8 +67,8 @@ export default function Customers() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="hidden sm:flex items-center gap-2 px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl">
+            <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+              <div className="flex items-center gap-2 px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl">
                 <Users size={13} className="text-emerald-500" />
                 <span className="text-[12px] font-semibold text-slate-600">
                   {customers.length} clients
@@ -86,7 +85,7 @@ export default function Customers() {
           </div>
         </div>
 
-        {/* ── Search bar ── */}
+        {/* Search bar */}
         <div className="bg-white border border-slate-200 rounded-2xl px-4 py-3">
           <div className="relative max-w-sm">
             <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -101,15 +100,15 @@ export default function Customers() {
           </div>
         </div>
 
-        {/* ── Table ── */}
+        {/* Table Container */}
         <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
 
-          {/* Table header row */}
+          {/* Responsive Table header row */}
           <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 bg-slate-50/80">
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
               Client
             </span>
-            <div className="flex gap-20 mr-2">
+            <div className="flex items-center gap-8 md:gap-[8.5rem]">
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hidden md:block">
                 Contact Info
               </span>
@@ -164,16 +163,16 @@ export default function Customers() {
                     </div>
                   </div>
 
-                  {/* Contact + actions */}
-                  <div className="flex items-center gap-6 flex-shrink-0">
-                    <div className="hidden md:flex flex-col gap-1">
-                      <div className="flex items-center gap-1.5 text-[12px] text-slate-500">
-                        <Mail size={12} className="text-slate-400" />
-                        {customer.email}
+                  {/* Contact + actions alignment */}
+                  <div className="flex items-center gap-8 md:gap-24 flex-shrink-0">
+                    <div className="hidden md:flex flex-col gap-1 w-48">
+                      <div className="flex items-center gap-1.5 text-[12px] text-slate-500 truncate">
+                        <Mail size={12} className="text-slate-400 flex-shrink-0" />
+                        <span className="truncate">{customer.email}</span>
                       </div>
-                      <div className="flex items-center gap-1.5 text-[12px] text-slate-500">
-                        <Phone size={12} className="text-slate-400" />
-                        {customer.phone}
+                      <div className="flex items-center gap-1.5 text-[12px] text-slate-500 truncate">
+                        <Phone size={12} className="text-slate-400 flex-shrink-0" />
+                        <span className="truncate">{customer.phone}</span>
                       </div>
                     </div>
 
@@ -204,7 +203,7 @@ export default function Customers() {
 
       </motion.div>
 
-      {/* Form overlay via nested route */}
+      {/* Form overlay */}
       {isFormOpen && <Outlet />}
     </div>
   );
